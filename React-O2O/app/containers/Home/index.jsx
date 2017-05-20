@@ -3,6 +3,15 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 //引入HomeHead
 import HomeHead from '../../components/HomeHead/index.jsx'
+
+//***********引用Redux的一些基本方法和相关内容********
+//connect作为react组件的redux组件的连接方法
+import { connect } from 'react-redux'
+//***********引用Redux的一些基本方法和相关内容********
+
+import Category from '../../components/Category'
+
+
 class Home extends React.Component {
 	
 	constructor(props, context) {
@@ -14,14 +23,45 @@ class Home extends React.Component {
 		return (
 			<div>
 				{/*<h1>hello , jinboy</h1>*/}
-				<HomeHead/>
+				<HomeHead cityName={this.props.userinfo.cityName}/>{/*因为在./containers/index.jsx中设置了cityName*/}
+				<Category/>
 			</div>
 			
 		)
 	}
 }
 
-export default Home
+
+
+//**************根据Rudex的规则更改Home组件的export************************
+
+//将state作为属性传入到React中
+function mapStateToProps(state) {
+	return {
+		userinfo: state.userinfo
+	}
+}
+//将action作为属性传入到React中
+function mapDispatchToProps(dispatch) {
+	//传入actions/userinfo.js中的update方法
+	return {
+		
+	}
+}
+//根据Rudex的规则更改App组件的export，通过conect函数返回的组件App，返回一个函数，然后将App组件传进去
+//connect()传入两个参数，第一个参数是函数mapStateToProps,第二个参数是函数mapDispatchToProps
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Home)
+
+//**************根据Rudex的规则更改Home组件的export************************
+
+// export default Home
+
+
+
+
 //react redux 绑定
 // function mapStateToProps(state) {
 // 	return {

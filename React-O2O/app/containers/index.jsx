@@ -74,7 +74,7 @@ class App extends React.Component {
 			this.setState({
 				initDone: true
 			})
-		}, 1000)
+		}, 500)
 		//测试成功，用setTimeout模拟ajax请求数据的过程，ajax通过callback，setTimeout也是通过callback
 
 		//ajax (function() {

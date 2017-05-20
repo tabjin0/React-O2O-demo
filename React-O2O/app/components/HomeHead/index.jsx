@@ -10,20 +10,23 @@ class HomeHead extends React.Component {
     }
     render() {
         return (
-            <div className="clear-fix">
+            <div id="home-head" className="clear-fix">
             	{/*左*/}
-	           	<div className="float-left">
-	           		扬州
+	           	<div className="home-head-left float-left">
+	           		<span>{this.props.cityName}</span>
+	           		&nbsp;
 	           		<i className="icon-down-triangle"></i>
 	           	</div>
 	           	{/*右*/}
-	            <div className="float-right">
-	            	<i className="icon-user">个人中心</i>
+	            <div className="home-head-right float-right">
+	            	<i className="icon-user">我</i>
 	            </div>
 	           	{/*中*/}
-	            <div>
-	            	<i className="icon-search"></i>
-	            	<input/>
+	            <div className="home-head-middle">
+	            	<div className="home-search-container">
+	            		<i className="icon-search"></i>
+	            		<input type="text" placeholder="你搜什么都是对的"/>
+	            	</div>
 	            </div>
             </div>
         )
