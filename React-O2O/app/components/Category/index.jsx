@@ -62,16 +62,16 @@ class Category extends React.Component {
 					</div>
 					<div className="carousel-item">
 						<ul className="clear-fix">
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
-							 <li className="float-left xuexi">学习</li>
+							 <li className="float-left xiaochikuaican">小吃快餐</li>
+							 <li className="float-left zizhucan">自助餐</li>
+							 <li className="float-left ribenliaoli">日本料理</li>
+							 <li className="float-left meifa">美发</li>
+							 <li className="float-left meijiameijie">美甲美睫</li>
+							 <li className="float-left meirongspa">美容SPA</li>
+							 <li className="float-left shoushenxianti">瘦身纤体</li>
+							 <li className="float-left qinzisheying">亲子摄影</li>
+							 <li className="float-left qinziyoule">亲子游乐</li>
+							 <li className="float-left quanbufenlei">全部分类</li>
 						</ul>
 					</div>
 				</ReactSwipe>

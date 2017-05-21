@@ -27,7 +27,7 @@ module.exports = {
             { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel' },
             { test: /\.less$/, exclude: /node_modules/, loader: 'style!css!postcss!less' },
             { test: /\.css$/, exclude: /node_modules/, loader: 'style!css!postcss' },
-            { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000' },  // 限制大小5kb
+            { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=100000' },  // 限制大小100kb
             //CSS3图标效果，webpack需要添加的配置
             { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000'} // 限制大小小于5k
         ]
