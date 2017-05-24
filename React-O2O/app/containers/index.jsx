@@ -37,7 +37,7 @@ class App extends React.Component {
 		//从localstorage获取城市数据
 		let cityName = LocalStore.getItem(CITYNAME)//传入一个key，这个key从localStoreKey.js中获取
 		if (cityName == null) {
-			cityName = '扬州'
+			cityName = '扬州containers/index'
 		}
 		// console.log(cityName)//测试城市是否获取
 		//将城市信息存储到 Redux 中

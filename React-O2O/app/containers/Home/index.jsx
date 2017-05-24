@@ -10,7 +10,8 @@ import { connect } from 'react-redux'
 //***********引用Redux的一些基本方法和相关内容********
 
 import Category from '../../components/Category'
-
+import Ads from './subpage/Ads.jsx'
+import List from './subpage/List.jsx'
 
 class Home extends React.Component {
 	
@@ -24,7 +25,13 @@ class Home extends React.Component {
 			<div>
 				{/*<h1>hello , jinboy</h1>*/}
 				<HomeHead cityName={this.props.userinfo.cityName}/>{/*因为在./containers/index.jsx中设置了cityName*/}
+				<hr style={{width: '100%',height: '1px'}}/>
 				<Category/>
+				<hr style={{width: '100%',height: '1px'}}/>
+				<div style={{height: '15px'}}></div>
+				<Ads />
+				<List cityName={this.props.userinfo.cityName} />
+				{/*需要给List组件传入城市名，和Readux关联的地方关注一下*/}
 			</div>
 			
 		)

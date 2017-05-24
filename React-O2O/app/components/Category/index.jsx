@@ -21,7 +21,7 @@ class Category extends React.Component {
 	render() {
 		var option = {
 			// 2s滚动一下
-			auto: 2000,
+			auto: 3000,
 			callback: function(index) {
 					//callback定义每次滚动完执行函数
 					console.log(index)
