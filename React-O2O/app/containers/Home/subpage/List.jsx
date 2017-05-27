@@ -7,10 +7,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { getListData } from '../../../fetch/home/home.js'
 
 import ListComponent from '../../../components/List'//bug：不要命名同样的组件名，命名之前审核一下是不是同名，这边和subpage的List的同名
-import ListItem from '../../../components/List/Item'
-
-
-
+import LoadMore from '../../../components/LoadMore'
 import "./style.less"//在这边引入一个style，之前都是在components文件夹中，每个组件包含模板、逻辑、样式
 //为什么要在subpage里面写style？
 //这是因为在render中还有“列表”组件，“加载更多”组件，这些组件的style是在components中的，但是下面h2标签还是需要style的
@@ -23,14 +20,16 @@ class List extends React.Component {
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 		// 通过state来存数据
 		this.state = {
-			data: [],//默认空数组，至少先来一个容器嘛
-			hasMore: false //默认没有更多加载页
+			data: [],//默认空数组，至少先来一个容器嘛，存储列表信息
+			hasMore: false, //默认没有更多加载页，记录当前状态下还有没有更多的数据可加载
+			isLoadingMore: false, //记录当前状态下是”loading。。“（正在工作）还是”点击加载更多“（等待工作 ）
+			page: 1 //记录下一页页码，因为默认情况下获取首页的时候传入的是第0页
 		};//当然存的是js对象啦
 	}
 
 	render() {
 		return (
-			<div>
+			<div className="list-container clear-fix">
 				<h2 className="home-list-title">猜你喜欢 {this.props.cityName}</h2>
 			{/*
 				测试存储成功
@@ -47,8 +46,8 @@ class List extends React.Component {
 					: <div>jinboy在List抽风啦</div>
 					// 在组件ListComponent中展示
 				}
-				<ListItem data={this.state.data} />
 			{/*加载更多*/}
+			<LoadMore/>
 			</div>
 		)
 	}
@@ -59,18 +58,23 @@ class List extends React.Component {
 	}
 	//新建loadFirstPageData方法，给componentDidMoun调用
 	loadFirstPageData() {
-		//获取首页数据的方法
+		//获取首页数据，result
 		//1.获取到城市的信息
 		const cityName = this.props.cityName  //从引用页面传入数据，<List cityName={this.props.userinfo.cityName} />也就给List组价传入了cityName
 		//2.引入fetch/home.js中的getListData方法之后，geiListPage方法第一个参数传city，第二个参数传page
 		const result = getListData(cityName, 0)  //这边0写死是因为这边就是获取的首页的数据，没有其他的
 
 		console.log(result) //测试result，打印出来是一个promise对象
-		this.resultHandler(result)
+		this.resultHandler(result) //在获取到result这个promise对象之后，传入到this.resultHandler中
 	}
-
+	//加载更多的数据，在组件LoadMOre中被触发 
+	loadMoreData() {
+		//加载下一页的数据result
+		//获取到result这个promise对象，用到this.resultHandler处理
+	}
 	//数据处理，在loadFirstPageData中调用
 	resultHandler(result) {
+		//解析数据，更改state
 		result.then(res => {
 			return res.json()
 		}).then(json => {

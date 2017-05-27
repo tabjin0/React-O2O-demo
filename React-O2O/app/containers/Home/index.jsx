@@ -28,7 +28,7 @@ class Home extends React.Component {
 				<hr style={{width: '100%',height: '1px'}}/>
 				<Category/>
 				<hr style={{width: '100%',height: '1px'}}/>
-				<div style={{height: '15px'}}></div>
+				<div style={{height: '10px'}}></div>
 				<Ads />
 				<List cityName={this.props.userinfo.cityName} />
 				{/*需要给List组件传入城市名，和Readux关联的地方关注一下*/}

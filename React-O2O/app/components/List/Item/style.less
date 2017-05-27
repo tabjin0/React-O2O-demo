@@ -1,0 +1,86 @@
+
+.list-item-container {
+	width: 100%;
+	padding: 10px 10px;
+	border: 1px solid #f1f1f1;
+	// margin: 1px 0;
+	.list-item-img-container {
+		// 限定img外容器大小
+		width: 90px;
+		height: 90px;
+		position: relative;
+		font-size: 14px;
+		// margin-left: 12px;
+		span {
+			background-color: #000;
+			width: 60%;
+			height: auto;
+			color: #fff;
+			line-height: 1;
+			text-align: center;
+			padding: 3px;
+			border-radius: 3px;
+			position: absolute;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.list-item-content-container {
+		margin-left: 90px;
+		padding-left: 15px;
+		color: #666;
+
+		.list-item-title-container {
+			width: 100%;
+			height: 25px;
+
+			h3 {
+				font-size: 18px;
+				font-family: "宋体";
+				// font-weight: normal;
+				line-height: 18px;//也可以是1
+				color: #333;
+				padding-top: 5px;
+			}
+			span {
+				font-size: 13px;
+				line-height: 18px;
+				color: #999;
+				display: inline-block;
+				padding-top: 5px;
+			}
+		}
+		.list-item-subtitle-container {
+			font-size: 13px;
+			line-height: 1.5;
+			color: #666;
+			padding-top: 10px;
+		}
+		.list-item-price-container {
+			margin-top: -20px;
+
+			.list-item-price {
+				font-size: 18px;
+				line-height: 18px;
+				font-weight: bold;
+				color: #f63;
+				padding-right: 5px;
+			}
+			.list-item-sold-number {
+				font-size: 13px;
+				line-height: 18px;
+				color: #999;
+			}
+			.list-item-preferential-price {
+				font-size: 12px;
+				line-height: 18px;
+				font-weight: normal;
+				color: #f63;
+				border: 1px solid #f63;
+			}
+		}
+	}
+}
