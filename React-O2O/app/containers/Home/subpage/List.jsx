@@ -21,8 +21,8 @@ class List extends React.Component {
 		// 通过state来存数据
 		this.state = {
 			data: [],//默认空数组，至少先来一个容器嘛，存储列表信息
-			hasMore: false, //默认没有更多加载页，记录当前状态下还有没有更多的数据可加载
-			isLoadingMore: false, //记录当前状态下是”loading。。“（正在工作）还是”点击加载更多“（等待工作 ）
+			hasMore: true, //默认没有更多加载页，记录当前状态下还有没有更多的数据可加载
+			isLoadingMore: false, //记录当前状态下是”loading。。“（正在工作）还是”点击加载更多“（等待工作 ），要明确当前的状态，到底是正在加载还是等待工作
 			page: 1 //记录下一页页码，因为默认情况下获取首页的时候传入的是第0页
 		};//当然存的是js对象啦
 	}
@@ -47,7 +47,11 @@ class List extends React.Component {
 					// 在组件ListComponent中展示
 				}
 			{/*加载更多*/}
-			<LoadMore/>
+			{
+				this.state.hasMore
+				?<LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreData.bind(this)} />
+				:''
+			}
 			</div>
 		)
 	}
@@ -62,15 +66,34 @@ class List extends React.Component {
 		//1.获取到城市的信息
 		const cityName = this.props.cityName  //从引用页面传入数据，<List cityName={this.props.userinfo.cityName} />也就给List组价传入了cityName
 		//2.引入fetch/home.js中的getListData方法之后，geiListPage方法第一个参数传city，第二个参数传page
-		const result = getListData(cityName, 0)  //这边0写死是因为这边就是获取的首页的数据，没有其他的
-
+		 //这边0写死是因为这边就是获取的首页的数据，没有其他的
+		const result = getListData(cityName, 0)
 		console.log(result) //测试result，打印出来是一个promise对象
+
+		//处理数据
 		this.resultHandler(result) //在获取到result这个promise对象之后，传入到this.resultHandler中
 	}
-	//加载更多的数据，在组件LoadMOre中被触发 
+	//加载更多的数据，在组件LoadMore中被触发 
 	loadMoreData() {
 		//加载下一页的数据result
 		//获取到result这个promise对象，用到this.resultHandler处理
+
+		//点击“加载更多”，记录状态
+
+		this.setState({
+			isLoadingMore: true
+		})
+		const cityName = this.props.cityName
+		const page = this.state.page //下一页的页码
+		const result = getListData(cityName, page) //传一个page就是下一页的页码
+		this.resultHandler(result) //获取了数据之后交给resultHandler函数来处理
+
+		//增加 page 计数
+		this.setState({  //bug:这边写成了setPage()，尴尬
+			page: page + 1,
+			isLoadingMore: false
+		})
+		//处理数据
 	}
 	//数据处理，在loadFirstPageData中调用
 	resultHandler(result) {
@@ -88,7 +111,8 @@ class List extends React.Component {
 			//拆解完存储数据，即放入State中
 			this.setState({
 				hasMore: hasMore,
-				data: data
+				// data: data 
+				data: this.state.data.concat(data) //将新获取的数据拼接到以前的数据上
 			})//可在render中确定存储。测试存储成功
 		})
 
